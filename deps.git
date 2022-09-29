@@ -1,4 +1,5 @@
 bonfire_common = "https://github.com/bonfire-networks/bonfire_common#main"
 bonfire_ui_common = "https://github.com/bonfire-networks/bonfire_ui_common#main"
 pointers = "https://github.com/bonfire-networks/pointers#main"
-beacon = "https://github.com/beaconCMS/beacon"
+#beacon = "https://github.com/beaconCMS/beacon"
+beacon = "https://github.com/bonfire-networks/beacon#bonfire"
