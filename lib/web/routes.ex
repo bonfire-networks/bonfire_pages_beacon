@@ -1,4 +1,6 @@
 defmodule Bonfire.Pages.Beacon.Web.Routes do
+  def declare_routes, do: nil
+
   defmacro __using__(_) do
     quote do
       pipeline :beacon do
