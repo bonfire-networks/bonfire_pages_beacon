@@ -4,5 +4,5 @@ defmodule Bonfire.Pages.Beacon.Integration do
   import Untangle
 
   def default_site, do: "site"
-  # def repo, do: Config.get!(:repo_module)
+  # def repo, do: Config.repo()
 end
