@@ -3,6 +3,8 @@ defmodule Bonfire.Pages.Beacon.DataSource do
 
   import Bonfire.Pages.Beacon.Integration
 
+  # TODO: integrate with Bonfire.Pages?
+
   def live_data(_site, ["home"], _params), do: %{vals: ["first", "second", "third"]}
 
   def live_data(_site, ["blog", blog_slug], _params),

@@ -3,63 +3,64 @@ defmodule Bonfire.Pages.Beacon.Web.Routes do
 
   defmacro __using__(_) do
     quote do
-      pipeline :beacon do
-        plug(BeaconWeb.Plug)
+      use Beacon.Router
+      use Beacon.LiveAdmin.Router
+
+      pipeline :beacon_api do
+        plug :accepts, ["json"]
+      end
+
+      pipeline :beacon_admin do
+        plug Beacon.LiveAdmin.Plug
       end
 
       # pages anyone can view
       scope "/site/" do
         pipe_through(:browser)
-        pipe_through(:beacon)
 
-        # live "/", HomeLive
+        beacon_site "/", site: Bonfire.Pages.Beacon.Integration.default_site()
 
-        live_session :beacon,
-          session: %{"beacon_site" => Bonfire.Pages.Beacon.Integration.default_site()} do
-          live("*path", BeaconWeb.PageLive, :path)
-        end
+        # live_session :beacon,
+        #   session: %{"beacon_site" => Bonfire.Pages.Beacon.Integration.default_site()} do
+        #   live("*path", BeaconWeb.PageLive, :path)
+        # end
       end
 
-      # pages only guests can view
+      # *only* guests can view
       scope "/pages/" do
         pipe_through(:browser)
-        pipe_through(:beacon)
         pipe_through(:guest_only)
       end
 
-      # pages you need an account to view
+      # you need an account to view
       scope "/pages/" do
         pipe_through(:browser)
-        pipe_through(:beacon)
         pipe_through(:account_required)
       end
 
-      # pages you need to view as a user
+      # anything you need to view as a user
       scope "/pages/" do
         pipe_through(:browser)
-        pipe_through(:beacon)
         pipe_through(:user_required)
       end
 
-      require BeaconWeb.PageManagement
-      require BeaconWeb.PageManagementApi
-
-      # pages only admins can view
-      scope "/page_management", BeaconWeb.PageManagement do
+      # only admins can view
+      scope "/page_management" do
         pipe_through(:browser)
-        pipe_through(:beacon)
         pipe_through(:admin_required)
+        pipe_through(:beacon_admin)
 
-        BeaconWeb.PageManagement.routes()
+        beacon_live_admin "/"
+        # BeaconWeb.PageManagement.routes()
       end
 
       # API only admins can view
-      scope "/page_management/api", BeaconWeb.PageManagementApi do
-        pipe_through(:browser)
-        pipe_through(:beacon)
+      scope "/page_management/api" do
+        pipe_through(:beacon_api)
         pipe_through(:admin_required)
 
-        BeaconWeb.PageManagementApi.routes()
+        beacon_api "/"
+        # BeaconWeb.PageManagementApi.routes()
       end
     end
   end

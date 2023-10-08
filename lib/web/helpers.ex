@@ -1,5 +1,5 @@
 defmodule Bonfire.Pages.Beacon.Web.Helpers do
-  import Phoenix.Component
+  use Phoenix.Component
 
   @doc """
     Usage:
