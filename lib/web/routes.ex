@@ -18,7 +18,7 @@ defmodule Bonfire.Pages.Beacon.Web.Routes do
       scope "/site/" do
         pipe_through(:browser)
 
-        beacon_site "/", site: Bonfire.Pages.Beacon.Integration.default_site()
+        beacon_site("/", site: Bonfire.Pages.Beacon.Integration.default_site())
 
         # live_session :beacon,
         #   session: %{"beacon_site" => Bonfire.Pages.Beacon.Integration.default_site()} do
@@ -50,7 +50,7 @@ defmodule Bonfire.Pages.Beacon.Web.Routes do
         pipe_through(:admin_required)
         pipe_through(:beacon_admin)
 
-        beacon_live_admin "/"
+        beacon_live_admin("/")
         # BeaconWeb.PageManagement.routes()
       end
 
@@ -59,7 +59,7 @@ defmodule Bonfire.Pages.Beacon.Web.Routes do
         pipe_through(:beacon_api)
         pipe_through(:admin_required)
 
-        beacon_api "/"
+        beacon_api("/")
         # BeaconWeb.PageManagementApi.routes()
       end
     end
