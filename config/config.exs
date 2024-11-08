@@ -21,7 +21,7 @@ config :bonfire_pages_beacon, :otp_app, :bonfire_pages_beacon
 config :bonfire_common, :otp_app, :bonfire_pages_beacon
 config :bonfire_pages_beacon, :repo_module, Bonfire.Common.Repo
 config :bonfire_pages_beacon, ecto_repos: [Bonfire.Common.Repo]
-config :bonfire_pages_beacon, :localisation_path, "priv/localisation"
+config :bonfire_common, :localisation_path, "priv/localisation"
 
 config :bonfire_data_identity, Bonfire.Data.Identity.Credential, hasher_module: Argon2
 
