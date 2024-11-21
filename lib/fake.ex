@@ -17,7 +17,7 @@ defmodule Bonfire.Pages.Beacon.Fake do
       site: default_site(),
       name: "surfaceful",
       body: """
-        <Surface.Components.Dynamic.LiveComponent module={@component} id={Text.random_string()} />
+        <Surface.Components.Dynamic.LiveComponent module={@component} id={random_dom_id()} />
       """
     })
 
@@ -33,7 +33,7 @@ defmodule Bonfire.Pages.Beacon.Fake do
       site: default_site(),
       name: "stateful",
       body: """
-        <%= live_component(%{module: @component, id: Text.random_string(), __context__: %{}}) %>
+        <%= live_component(%{module: @component, id: random_dom_id(), __context__: %{}}) %>
       """
     })
 
