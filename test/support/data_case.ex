@@ -23,6 +23,8 @@ defmodule Bonfire.Pages.Beacon.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       # import Bonfire.Pages.Beacon.DataCase
+
+      @moduletag :backend
     end
   end
 
